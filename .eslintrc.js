@@ -32,6 +32,7 @@ module.exports = {
   rules: {
     '@typescript-eslint/consistent-type-definitions': ['error', 'type'],
     '@typescript-eslint/no-shadow': ['error'],
+    "linebreak-style": 0,
     '@typescript-eslint/no-invalid-void-type': 'off',
     'import/order': [
       'error',

@@ -1,13 +1,13 @@
 @import "./styles/index.scss";
 
 .header {
-  background-color: #a4c991;
+  background-color: $primary-color;
   padding: 10px 20px;
   color: white;
   display: flex;
   justify-content: space-between;
   align-items: center;
- 
+  font-family: $font-family;
 }
 
 .layout-container {
@@ -15,7 +15,35 @@
 }
 
 .logo {
+  max-width: 20rem;
   @include for-phone-only {
-    width: 50px;
+    width: 75%;
+  }
+}
+
+nav{
+  ul{
+    display:flex;
+    li{
+      list-style: none;
+      margin-right:1rem;
+      a{
+        font-size: 1.2rem;
+        font-weight: lighter;
+        background-color: transparent;
+        padding:0.5rem;
+        border-radius:8px;
+        border:1px solid $primary-light;
+        color:$primary-light;
+        text-decoration: none;
+        transition-duration: .2s;
+        box-shadow: 0 0 0px rgba(0, 0, 0, 0);
+      }
+      a:hover{
+        border:1px solid white;
+        color:white;
+        box-shadow: 0 1px 15px rgba(255,255,255,0.2);
+      }
+    }
   }
 }

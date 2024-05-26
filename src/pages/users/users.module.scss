@@ -1,21 +1,69 @@
-.loadButlon {
-    width: 200px;
-    height: 40px;
-    display: flex;
-    align-items: center;
-    justify-content: flex-start;
-    background-color: rgb(66, 66, 66);
-    border-radius: 5px;
-    color: white;
-    border: none;
-    position: relative;
-    cursor: pointer;
-    transition-duration: .2s;
-    flex-direction: row;
+@import "../../styles/index.scss";
+
+.loadButton {
+  width: 200px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: rgb(66, 66, 66);
+  border-radius: 5px;
+  color: white;
+  border: none;
+  position: relative;
+  cursor: pointer;
+  transition-duration: .2s;
+  flex-direction: row;
+  margin:2rem auto;
+
+}
+
+.loadButton:hover {
+  background-color: rgb(77, 77, 77);
+  transition-duration: .2s;
+  justify-content: center;
+}
+
+.container{
+display:flex;
+flex-direction: column;
+justify-items: center;
+}
+
+h1{
+  margin:2rem;
+}
+
+select{
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  display:flex;
+  text-align:center;
+  margin-left:2rem;
+  border-radius:6px;
+  border:1px solid $primary-color;
+  background-color: transparent;
+  width:6rem;
+  height:2rem;
+  font-size: 1.2rem;
+}
+select:focus{
+
+}
+
+.userList{
+  list-style: none;
+  max-width: 600px;
+  display: flex;
+  flex-direction: column;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: whitesmoke;
+  border-radius: 10px;
+  box-shadow: 0 10px 15px rgba(0, 0, 0, 0.2);
+  li{
+    margin:4px;
   }
-  
-  .loadButlon:hover {
-    background-color: rgb(77, 77, 77);
-    transition-duration: .2s;
-    justify-content: center;
-  }
+}
+

@@ -21,31 +21,36 @@ const Users = () => {
   const [users, setUsers] = useState<User[]>([]);
   const [gender, setGender] = useState<Gender>('');
   const [pageToGet, setPageToGet] = useState<number>(1);
+  const [loading, setLoading] = useState<boolean>(false);
 
-  const getUsers = async (page: number) => {
+  const getUsers = async (page: number, gender: Gender) => {
+    setLoading(true);
+    const genderParam = gender ? `&gender=${gender}` : '';
     const result = await fetch(
-      `${currentEnvironment.api.baseUrl}?results=5&gender=female&page=${String(page)}`,
+      `${currentEnvironment.api.baseUrl}?results=5${genderParam}&page=${String(page)}`,
     );
-    const usersResults = (await result.json()) as User[];
+    const usersResults = (await result.json()).results as User[];
 
     setUsers((oldUsers) => (page === 1 ? usersResults : [...oldUsers, ...usersResults]));
+    setLoading(false);
   };
 
   useEffect(() => {
     void (async () => {
-      await getUsers(pageToGet);
+      await getUsers(pageToGet, gender);
     })();
-  }, []);
+  }, [pageToGet, gender]);
 
   return (
-    <div>
-      <div style={{ backgroundColor: 'grey' }}>
-        Users
+    <div className={styles.container}>
+      <div>
+        <h1>Users</h1>
         <select
           id="gender"
           name="gender"
           onChange={(event) => {
             setGender(event.target.value as Gender);
+            setPageToGet(1);
           }}
         >
           <option value="">All</option>
@@ -53,7 +58,7 @@ const Users = () => {
           <option value="male">Male</option>
         </select>
       </div>
-      <ul>
+      <ul className={styles.userList}>
         {users.length > 0
           ? users.map((user: User) => (
             <li key={user.login.uuid}>
@@ -61,11 +66,12 @@ const Users = () => {
               {' '}
               {user.name.last}
               {' '}
+              (
               {user.gender}
-              {' '}
+              )
             </li>
           ))
-          : null}
+          : (loading ? <p>Loading...</p> : <p>No users found</p>)}
       </ul>
       <button
         className={styles.loadButton}
